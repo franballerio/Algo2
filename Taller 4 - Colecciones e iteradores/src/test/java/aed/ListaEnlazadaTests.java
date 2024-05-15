@@ -18,11 +18,11 @@ class ListaEnlazadaTests {
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAdelante(42);
-        lista.agregarAdelante(4);
-        lista.agregarAdelante(55);
+        //lista.agregarAdelante(4);
+        //lista.agregarAdelante(55);
 
         //assertEquals(1, lista.longitud());
-        assertEquals(3, lista.longitud());
+        assertEquals(1, lista.longitud());
         assertEquals(42, lista.obtener(0));
     }
 

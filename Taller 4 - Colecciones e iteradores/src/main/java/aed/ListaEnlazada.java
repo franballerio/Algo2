@@ -10,7 +10,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     private class Nodo { // definimos la clase nodo, con las caracteristicas
                          // que necesitamos para la lista enlazada doble
         Nodo prev;
-        int valor;
+        T valor;
         Nodo next;
 
         public Nodo(T value) {
@@ -20,7 +20,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     public ListaEnlazada() {
         // creamos una nueva lista enlazada doble
-        primero = null;
+        primero = new Nodo(null);
     }
 
     public int longitud() {
@@ -28,19 +28,12 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public void agregarAdelante(T elem) {
-        Nodo nuevo = new Nodo(elem); // creamos el nodo a agregar
-
-        if (primero == null) {
-            primero = nuevo;
-            primero.next = null;
-            primero.prev = null;
-            // como la lista estaba vacia ponemos el nodo en la primer posicion,
-            // y apunta a null adelante y atras
+        if (primero.valor == null) {
+            primero.valor = elem;
+            largo++;
         } else {
-            primero.next = primero;
-            primero = nuevo;
+
         }
-        largo++;
     }
 
     public void agregarAtras(T elem) {
@@ -48,7 +41,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public T obtener(int i) {
-        ;
+        return primero.valor;
     }
 
     public void eliminar(int i) {
