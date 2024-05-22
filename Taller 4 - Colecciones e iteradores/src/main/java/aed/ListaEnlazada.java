@@ -13,10 +13,17 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         T valor;
         Nodo next;
 
-        public Nodo(T value) {
-            valor = value;
+        public Nodo(T elem) {
+            valor = elem;
             prev = null;
             next = null;
+        }
+
+        public Nodo copiar() {
+            Nodo nuevo = new Nodo(valor);
+            nuevo.prev = prev;
+            nuevo.next = next;
+            return nuevo;
         }
     }
 
@@ -92,6 +99,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         // vice versa. pero hay que ver los casos borde
         // el primer elemento y el ultimo elemento.
         // y si hay un solo elemento
+
         if (actual.next == null && actual.prev == null) { // unico elemento
             actual.valor = null;
         }
@@ -110,44 +118,75 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public void modificarPosicion(int indice, T elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        // iteramos como en obtener
+        Nodo actual = primero;
+        for (int k = 0; k < indice; k++) {
+            actual = actual.next;
+        }
+        // ahora cambiamos el valor de ese nodo por el nuevo
+        actual.valor = elem;
     }
 
     public ListaEnlazada<T> copiar() {
-        throw new UnsupportedOperationException("No implementada aun");
+        // creamos una nueva listaenlazada, y copiamos los atributos
+        ListaEnlazada<T> nueva = new ListaEnlazada<>();
+        nueva.primero = primero.copiar();
+        nueva.longitud = longitud;
+        return nueva;
     }
 
     public ListaEnlazada(ListaEnlazada<T> lista) {
-        throw new UnsupportedOperationException("No implementada aun");
+        ;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("No implementada aun");
+        StringBuffer sbuffer = new StringBuffer();
+        // por temas esteticos agrego el primer elemento, itero y luego agrego el ultimo
+        // elemento
+        sbuffer.append("[" + primero.valor.toString() + ", ");
+        // iteramos como en obtener
+        Nodo actual = primero.next;
+        for (int k = 0; k < longitud - 2; k++) {
+            sbuffer.append(actual.valor.toString() + ", ");
+            actual = actual.next;
+        }
+        sbuffer.append(actual.valor.toString() + "]");
+
+        return sbuffer.toString(); // como sbuffer era una lista, la convertimos a string;
     }
 
     private class ListaIterador implements Iterador<T> {
-        // Completar atributos privados
+
+        private int pos;
 
         public boolean haySiguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+
+            return pos != longitud;
         }
 
         public boolean hayAnterior() {
-            throw new UnsupportedOperationException("No implementada aun");
+            return pos != 0;
         }
 
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            int dedito = pos;
+            pos++;
+            return obtener(dedito);
         }
 
         public T anterior() {
-            throw new UnsupportedOperationException("No implementada aun");
+            int dedito = pos - 1;
+            pos--;
+            return obtener(dedito);
         }
+
     }
 
     public Iterador<T> iterador() {
-        throw new UnsupportedOperationException("No implementada aun");
+        ListaIterador nuevo = new ListaIterador();
+        nuevo.pos = 0;
+        return nuevo;
     }
 
 }
