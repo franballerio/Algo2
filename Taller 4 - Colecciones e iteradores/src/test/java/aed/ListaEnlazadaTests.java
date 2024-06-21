@@ -18,10 +18,7 @@ class ListaEnlazadaTests {
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAdelante(42);
-        // lista.agregarAdelante(4);
-        // lista.agregarAdelante(55);
 
-        // assertEquals(1, lista.longitud());
         assertEquals(1, lista.longitud());
         assertEquals(42, lista.obtener(0));
     }
@@ -115,7 +112,7 @@ class ListaEnlazadaTests {
     }
 
     @Test
-    void eliminarExtremos() {
+    void eliminarExtremos(){
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAdelante(43);
@@ -196,9 +193,9 @@ class ListaEnlazadaTests {
         lista.agregarAtras(44);
         lista.agregarAtras(45);
 
-        ListaEnlazada<Integer> copiaDeLista = lista.copiar();
+        ListaEnlazada<Integer> copiaDeLista = new ListaEnlazada<>(lista);
 
-        // assertEquals(4, copiaDeLista.longitud());
+        assertEquals(4, copiaDeLista.longitud());
         assertEquals(42, copiaDeLista.obtener(0));
         assertEquals(43, copiaDeLista.obtener(1));
         assertEquals(44, copiaDeLista.obtener(2));
@@ -244,7 +241,7 @@ class ListaEnlazadaTests {
     }
 
     @Test
-    void imprimirLista() {
+    void imprimirLista(){
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAtras(42);
@@ -258,7 +255,7 @@ class ListaEnlazadaTests {
     }
 
     @Test
-    void imprimirLuegoDeEliminar() {
+    void imprimirLuegoDeEliminar(){
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAtras(42);
@@ -305,7 +302,7 @@ class ListaEnlazadaTests {
     }
 
     @Test
-    void iteradorEsBidireccional() {
+    void iteradorEsBidireccional(){
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAtras(42);

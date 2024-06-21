@@ -136,7 +136,8 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public ListaEnlazada(ListaEnlazada<T> lista) {
-        ;
+        primero = lista.primero.copiar();
+        longitud = lista.longitud;
     }
 
     @Override
